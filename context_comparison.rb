@@ -2,11 +2,10 @@
 
 require_relative "compare"
 require_relative "parse_text"
-require_relative "check_files"
 require_relative "formatter"
 #Read in the required variables
 input_variables = Output_formatter.request_inputs
-puts Output_formatter.notification_confirmation(input_variables[0], input_variables[1], input_variables[2], input_variables[3])
+puts Output_formatter.notification_confirmation(*input_variables)
 
 #read contents of directory
 directory_contents = Dir.entries(input_variables[0])
@@ -38,5 +37,5 @@ end
 if context_files_found.empty?
   puts "No matching files were found."
 else
-  puts Output_formatter.results_formatter(context_files_found, input_variables[0], input_variables[1], input_variables[2], input_variables[3])
+  puts Output_formatter.results_formatter(context_files_found, *input_variables)
 end
