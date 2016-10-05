@@ -1,1 +1,1 @@
-# excercise
+# exercise
