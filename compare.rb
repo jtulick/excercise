@@ -8,7 +8,6 @@ def array_test(first_array, second_array, context_index)
   first_array.each do |first_term|
     second_array.each do |second_term|
       term_separation = first_term - second_term
-      puts term_separation.abs
       return true if term_separation.abs <= context_index
     end
   end

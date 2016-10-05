@@ -3,26 +3,18 @@
 require_relative "compare"
 require_relative "parse_text"
 require_relative "check_files"
+require_relative "formatter"
 #Read in the required variables
-puts "Enter the directory to search: "
-directory_to_search = gets.chomp
-if Dir.exists?(directory_to_search)
-else
-  puts "Directory " + directory_to_search + " does not exist.  Please enter the directory to search: "
-  directory_to_search = gets.chomp
-end
+input_variables = Output_formatter.request_inputs
+puts Output_formatter.notification_confirmation(input_variables[0], input_variables[1], input_variables[2], input_variables[3])
 
-puts "Enter the first search term: "
-first_search_term = gets.chomp
-puts "Enter the second search term: "
-second_search_term = gets.chomp
-puts "Enter the context variable (e.g., the terms must be no more than N words apart): "
-context_words_separation = gets.chomp.to_i
+#read contents of directory
+directory_contents = Dir.entries(input_variables[0])
 
-#Read contents of the directory
-directory_contents = Dir.entries(directory_to_search)
-
-text_files_in_directory = []  #initalize array
+#initalize required arrays
+text_files_in_directory = []
+parsed_files = []
+context_files_found = []
 
 #find all text files in the specified directory
 directory_contents.each do |file_in_directory|
@@ -32,16 +24,19 @@ directory_contents.each do |file_in_directory|
   end
 end
 
-parsed_files = []
 text_files_in_directory.each do |text_file|
-  full_file_path = directory_to_search + "/" + text_file
-  parsed_files << parse_text(full_file_path, first_search_term.downcase, second_search_term.downcase)
+  full_file_path = input_variables[0] + "/" + text_file
+  parsed_files << parse_text(full_file_path, input_variables[1].downcase, input_variables[2].downcase)
 end
 
-file_check_results = check_files(parsed_files)
-puts file_check_results
-p file_check_results
-puts directory_to_search
-puts first_search_term
-puts second_search_term
-puts context_words_separation
+parsed_files.each do |file|
+  if array_test(file[1], file[2], input_variables[3])
+    context_files_found << file[0]
+  end
+end
+
+if context_files_found.empty?
+  puts "No matching files were found."
+else
+  puts Output_formatter.results_formatter(context_files_found, input_variables[0], input_variables[1], input_variables[2], input_variables[3])
+end
