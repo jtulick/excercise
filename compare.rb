@@ -4,7 +4,7 @@
 # in two arrays (first_array, second_array) if they are within a specified range
 # of eachother (context_index)
 def array_test(first_array, second_array, context_index)
-  return false if first_array.empty? or second_array.empty?
+  return false if first_array.empty? || second_array.empty?
   first_array.each do |first_term|
     second_array.each do |second_term|
       term_separation = first_term - second_term
