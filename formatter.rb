@@ -1,6 +1,5 @@
 # File: formatter.rb
-
-class OutputFormatter # Class for formatting text
+class OutputFormatter
   def self.request_inputs
     puts 'Enter the directory to search: '
     directory_to_search = gets.chomp
@@ -21,8 +20,8 @@ class OutputFormatter # Class for formatting text
       puts 'context variable again:'
       context_words_separation = gets.chomp.to_i
     end
-    return directory_to_search, first_search_term, second_search_term, \
-      context_words_separation
+    [directory_to_search, first_search_term, second_search_term,
+     context_words_separation]
   end
 
   def self.notification_confirmation(
