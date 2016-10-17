@@ -6,9 +6,12 @@ This is a simple program which takes a directory, two search terms, and an integ
 
 
 
-##Setup
+##Setup/Requirements
 
-The only required prerequisite is ruby 2.3.1,  which can be obtained @ https://www.ruby-lang.org/en/documentation/installation/
+Ruby 2.3.1,  which can be obtained @ https://www.ruby-lang.org/en/documentation/installation/
+
+Trollop which can be installed using the command:
+`gem install trollop`
 
 Clone the exercise from github
 ```
@@ -22,8 +25,4 @@ cd exercise
 
 From the exercise directory, run the following:
 
-`ruby context_comparison.rb`
-
-or
-
-`./context_comparison.rb`
+`ruby exercise.rb -d <directory> -f <first search term> -e <second search term> -c <context integer>`

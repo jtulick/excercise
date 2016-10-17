@@ -1,29 +1,5 @@
 # File: formatter.rb
-class OutputFormatter
-  def self.request_inputs
-    puts 'Enter the directory to search: '
-    directory_to_search = gets.chomp
-    until Dir.exist?(directory_to_search)
-      puts "Directory #{directory_to_search} does not exist."
-      puts 'Please enter a valid directory to search: '
-      directory_to_search = gets.chomp
-    end
-
-    puts 'Enter the first search term: '
-    first_search_term = gets.chomp
-    puts 'Enter the second search term: '
-    second_search_term = gets.chomp
-    puts 'Enter the context variable: '
-    context_words_separation = gets.chomp.to_i
-    while context_words_separation.zero?
-      puts 'The context variable must be a positive integer, please enter the '
-      puts 'context variable again:'
-      context_words_separation = gets.chomp.to_i
-    end
-    [directory_to_search, first_search_term, second_search_term,
-     context_words_separation]
-  end
-
+class Formatter
   def self.notification_confirmation(
     directory,
     first_term,
