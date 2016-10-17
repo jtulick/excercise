@@ -28,9 +28,9 @@ class Files
     end
   end
 
-  def has_context=(new_context)
-    @has_context = new_context
-  end
+#  def has_context=(new_context)
+#    @has_context = new_context
+#  end
 
   def set_context(context)
     @term_one_locations.each do |term_one|

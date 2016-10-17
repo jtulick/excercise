@@ -1,11 +1,6 @@
 # File: formatter.rb
 class Formatter
-  def self.notification_confirmation(
-    directory,
-    first_term,
-    second_term,
-    context_index
-  )
+  def self.notification_confirmation(directory, first_term, second_term, context_index)
     puts '---------------------------------------------------------------------'
     puts 'Beginning query with the following parameters:'
     puts "Directory: #{directory}"

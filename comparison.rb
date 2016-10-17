@@ -8,6 +8,8 @@ class Comparison
   def self.is_text?(file_to_check)
     if file_to_check.end_with? '.txt'
       return true
+    else
+      return false
     end
   end
 end
