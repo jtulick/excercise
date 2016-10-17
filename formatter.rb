@@ -22,9 +22,8 @@ class Formatter
     second_term,
     context_index
   )
-    puts "The following files contain the given search terms \"#{first_term}\" \
-and \"#{second_term}\", within #{context_index} words of each other in the \
-directory \"#{directory}\":"
+    puts "The following files contain the given search terms \"#{first_term}\" and \"#{second_term}\""
+    puts "within #{context_index} words of each other in the directory \"#{directory}\":"
     puts '---------------------------------------------------------------------'
     puts results
   end
