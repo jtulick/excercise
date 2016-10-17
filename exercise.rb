@@ -1,5 +1,5 @@
 # File: exercise.rb
-require_relative 'parse_text'
+require_relative 'files'
 require_relative 'formatter'
 require_relative 'comparison'
 require 'trollop'
@@ -35,6 +35,7 @@ end
 
 abort("No text files found in #{opts[:directory]}") if text_files == []
 text_files.map! { |file| "#{opts[:directory]}/#{file}" }
+
 text_files.each do |file|
   all_text_files << Files.new(File.basename(file), File.expand_path(file))
 end
@@ -48,8 +49,4 @@ all_text_files.each do |file|
   files_with_context << file.name if file.has_context
 end
 
-if files_with_context == []
-  puts "No matching files found."
-else
-  Formatter.results_formatter(files_with_context, opts[:directory], opts[:termone], opts[:termtwo], opts[:context])
-end
+Formatter.results_formatter(files_with_context, opts[:directory], opts[:termone], opts[:termtwo], opts[:context])
