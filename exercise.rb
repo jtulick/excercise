@@ -34,6 +34,7 @@ folder_contents.each do |file|
 end
 
 abort("No text files found in #{opts[:directory]}") if text_files == []
+
 text_files.map! { |file| "#{opts[:directory]}/#{file}" }
 
 text_files.each do |file|

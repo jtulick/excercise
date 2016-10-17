@@ -1,13 +1,15 @@
-# File: files.rb
+# File: exercise.rb
 class Files
-  attr_reader :name, :full_path, :term_one_locations, :term_two_locations, :has_context
+  attr_reader :name, :full_path, :term_one_locations, :term_two_locations, :term_separation, :has_context
   def initialize(name, full_path)
     @name = name
     @full_path = full_path
     @term_one_locations = []
     @term_two_locations = []
+    @term_separation = []
     @has_context = false
   end
+
   def find_words?(term_one, term_two)
     read_word_count = 0
     File.open(@full_path).each do |line|
@@ -39,4 +41,5 @@ class Files
       end
     end
   end
+
 end
