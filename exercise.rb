@@ -1,5 +1,5 @@
 # File: exercise.rb
-require_relative 'parse_text'
+require_relative 'files'
 require_relative 'formatter'
 require_relative 'comparison'
 require 'trollop'
@@ -24,6 +24,9 @@ Trollop.die :directory, "#{opts[:directory]} is not a valid directory" unless Di
 
 text_files = []
 all_text_files = []
+files_with_context = []
+
+puts Formatter.notification_confirmation(opts[:directory], opts[:termone], opts[:termtwo], opts[:context])
 
 folder_contents = Dir.entries(opts[:directory])
 folder_contents.each do |file|
@@ -31,7 +34,9 @@ folder_contents.each do |file|
 end
 
 abort("No text files found in #{opts[:directory]}") if text_files == []
+
 text_files.map! { |file| "#{opts[:directory]}/#{file}" }
+
 text_files.each do |file|
   all_text_files << Files.new(File.basename(file), File.expand_path(file))
 end
@@ -41,12 +46,8 @@ all_text_files.each do |file|
 end
 
 all_text_files.each do |file|
-  file.term_one_locations.each do |term_one|
-    file.term_two_locations.each do |term_two|
-      if Comparison.separation(term_one, term_two).between?(0, opts[:context])
-        file.has_context = true
-      end
-    end
-  end
-  puts file.full_path.to_s if file.has_context
+  file.set_context(opts[:context])
+  files_with_context << file.name if file.has_context
 end
+
+Formatter.results_formatter(files_with_context, opts[:directory], opts[:termone], opts[:termtwo], opts[:context])
